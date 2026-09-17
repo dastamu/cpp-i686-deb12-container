@@ -18,7 +18,7 @@ git clone git@github.com:dastamu/cpp-i686-deb12-container.git
 ```sh
 cd cpp-i686-deb12-container
 sh build.sh
-sh complie.sh
+sh compile.sh
 sh run.sh
 ```
 
