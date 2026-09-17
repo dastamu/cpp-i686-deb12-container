@@ -11,11 +11,12 @@ apt install podman podman-compose
 
 # Download
 ```
-git clone ...
+git clone git@github.com:dastamu/cpp-i686-deb12-container.git
 ```
 
 # Run
 ```sh
+cd cpp-i686-deb12-container
 sh build.sh
 sh complie.sh
 sh run.sh
