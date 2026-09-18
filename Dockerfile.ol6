@@ -1,0 +1,34 @@
+# DOCKERFILE
+
+FROM docker.io/oraclelinux:6
+
+# Naprawa repozytoriów yum (Oracle Linux 6 jest EOL, repozytoria przeniesiono do vault)
+RUN rm -f /etc/yum.repos.d/*.repo
+
+RUN echo $'[ol6_latest]\n\
+name=Oracle Linux 6.10 Latest\n\
+baseurl=https://yum.oracle.com/repo/OracleLinux/OL6/latest/x86_64/\n\
+gpgcheck=0\n\
+enabled=1\n\
+\n\
+[ol6_addons]\n\
+name=Oracle Linux 6 Addons\n\
+baseurl=https://yum.oracle.com/repo/OracleLinux/OL6/addons/x86_64/\n\
+gpgcheck=0\n\
+enabled=1' > /etc/yum.repos.d/oracle-vault.repo
+
+# Instalacja środowiska programistycznego
+RUN yum update -y && yum install -y \
+    gcc \
+    gcc-c++ \
+    make \
+    cmake \
+    glibc-devel \
+    glibc-devel.i686 \
+    glibc-static \
+    glibc-static.i686 \
+    libstdc++-devel \
+    libstdc++-devel.i686 \
+    && yum clean all
+
+WORKDIR /src
